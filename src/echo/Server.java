@@ -38,17 +38,27 @@ public class Server {
 		
 		//쓰기 스트림
 		OutputStream out = socket.getOutputStream();
-		OutputStreamWriter osw = new OutputStreamWriter(out, "UTF8");
+		OutputStreamWriter osw = new OutputStreamWriter(out, "UTF-8");
 		BufferedWriter bw = new BufferedWriter(osw);
 		
 		//메세지 받기
 		String msg = br.readLine();
-		System.out.println(msg);
+		System.out.println("받은메세지:" + msg);
 		
 		//메세지 보내기
 		bw.write(msg);
 		bw.newLine();
 		bw.flush();
+		
+		
+		System.out.println("=====================================");
+		System.out.println("<서버 종료>");
+		
+		//닫기
+		br.close();
+		bw.close();
+		socket.close();
+		serverSocket.close();
 		
 	}
 

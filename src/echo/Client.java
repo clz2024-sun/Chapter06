@@ -9,6 +9,7 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.util.Scanner;
 
 public class Client {
 
@@ -20,7 +21,7 @@ public class Client {
 		System.out.println("<클라이언트 시작>");
 		System.out.println("========================================");
 		
-		System.out.println("[서버에 연결을 요청합니다.");
+		System.out.println("[서버에 연결을 요청합니다.]");
 		socket.connect( new InetSocketAddress("192.168.0.101", 10001) );
 		
 		System.out.println("[서버에 연결 되었습니다.]");
@@ -36,14 +37,27 @@ public class Client {
 		InputStreamReader isr = new InputStreamReader(in, "UTF-8");
 		BufferedReader br = new BufferedReader(isr);
 		
+		//입력 스캐너사용
+		Scanner sc = new Scanner(System.in);
+		System.out.print("입력:" );
+		String str = sc.nextLine();
+		
 		//메세지 보내기
-		bw.write("황일영");
+		bw.write(str);
 		bw.newLine();
 		bw.flush();
 		
 		//메세지 받기
 		String reMsg = br.readLine();
-		System.out.println(reMsg);
+		System.out.println("server:[" + reMsg + "]");
+		
+		System.out.println("====================================");
+		System.out.println("<클라이어트 종료>");
+		
+		//닫기
+		br.close();
+		bw.close();
+		socket.close();
 		
 	}
 
