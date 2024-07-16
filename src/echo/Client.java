@@ -72,6 +72,21 @@ public class Client {
 		System.out.println("====================================");
 		System.out.println("<클라이어트 종료>");
 		
+		//println 만들기 OutputStrem 일거야?
+		/*
+		OutputStream out = socket.getOutputStream(); //socket이 주스트림을 만들어서 달라고하며됨
+		OutputStreamWriter osw = new OutputStreamWriter(out, "UTF-8");
+		BufferedWriter bw = new BufferedWriter(osw);
+		*/
+		
+		OutputStream pout = System.out;
+		OutputStreamWriter posw = new OutputStreamWriter(pout, "UTF-8");
+		BufferedWriter pbw = new BufferedWriter(posw);
+		
+		pbw.write("println 테스트");
+		pbw.newLine();
+		pbw.flush();
+		
 		//닫기
 		//scbr.close();
 		sc.close();
